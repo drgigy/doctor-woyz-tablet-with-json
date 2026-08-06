@@ -2641,9 +2641,6 @@
           <style>
             #printPreview { position: fixed; inset: 0; z-index: 10000; overflow: auto; background: #ffffff; color: #111827; font-family: Arial, sans-serif; line-height: 1.45; }
             #printPreview[hidden] { display: none !important; }
-            #printPreview .print-toolbar { display: flex; gap: 12px; align-items: center; padding: 16px 36px; background: #ffffff; border-bottom: 1px solid #e5e7eb; position: sticky; top: 0; z-index: 10; }
-            #printPreview .print-toolbar button { border: 1px solid #ff4545; border-radius: 12px; background: #ffffff; color: #d12626; cursor: pointer; font: 700 15px Arial, sans-serif; padding: 10px 16px; }
-            #printPreview .print-toolbar .back-button { background: #ff4545; color: #ffffff; box-shadow: 0 10px 24px rgba(255, 69, 69, .18); }
             #printPreview .print-page { display: block !important; width: auto !important; max-width: none !important; min-height: 0 !important; background: #ffffff; margin: 36px; padding: 0 !important; box-sizing: border-box; }
             #printPreview h1 { margin: 0 0 18px; color: #1f3f8f; font-size: 26px; }
             #printPreview h2 { margin: 18px 0 6px; color: #334155; font-size: 14px; font-weight: 900; text-transform: uppercase; letter-spacing: .04em; }
@@ -2663,28 +2660,12 @@
             @media print {
               body > *:not(#printPreview) { display: none !important; }
               #printPreview { display: block !important; position: static !important; overflow: visible !important; }
-              #printPreview .print-toolbar { display: none !important; }
               #printPreview .print-page { margin: 24mm 18mm; }
             }
           </style>
-          <div class="print-toolbar">
-            <button class="back-button" type="button">Back</button>
-            <button class="print-button" type="button">Print</button>
-          </div>
           <main class="print-page"></main>
         `;
         document.body.appendChild(printPreview);
-        printPreview.querySelector(".back-button").addEventListener("click", () => {
-          printPreview.hidden = true;
-          document.body.style.overflow = "";
-        });
-        printPreview.querySelector(".print-button").addEventListener("click", () => {
-          if (window.AndroidPrint && typeof window.AndroidPrint.print === "function") {
-            window.AndroidPrint.print(printPreview.dataset.title || "Doctor WOYZ");
-          } else {
-            window.print();
-          }
-        });
       }
       printPreview.dataset.title = title;
       printPreview.querySelector(".print-page").innerHTML = printableBody;
@@ -2700,7 +2681,6 @@
                 ${printStyles}
                 html, body { margin: 0; background: #ffffff !important; }
                 #printPreview { display: block !important; position: static !important; overflow: visible !important; }
-                #printPreview .print-toolbar { display: none !important; }
                 #printPreview .print-page { margin: 18mm 16mm !important; }
               </style>
             </head>
@@ -2716,6 +2696,12 @@
       printPreview.hidden = false;
       document.body.style.overflow = "hidden";
       printPreview.scrollTop = 0;
+      const finishBrowserPrint = () => {
+        printPreview.hidden = true;
+        document.body.style.overflow = "";
+      };
+      window.addEventListener("afterprint", finishBrowserPrint, { once: true });
+      requestAnimationFrame(() => requestAnimationFrame(() => window.print()));
     }
 
     function printVisitNote() {
