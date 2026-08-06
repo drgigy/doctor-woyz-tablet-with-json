@@ -1,4 +1,4 @@
-const CACHE_NAME = "doctor-woyz-local-gemini-v18";
+const CACHE_NAME = "doctor-woyz-local-gemini-v19";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -66,4 +66,3 @@ self.addEventListener("fetch", event => {
     })
   );
 });
-
