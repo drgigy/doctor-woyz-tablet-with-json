@@ -595,11 +595,11 @@
       bottom: max(38px, calc(env(safe-area-inset-bottom) + 24px));
       transform: translateX(-50%);
       z-index: 24;
-      width: min(calc(100vw - 48px), 1100px);
+      width: min(calc(100vw - 48px), 735px);
       margin: 0;
       display: grid;
       justify-items: center;
-      gap: 11px;
+      gap: 6px;
     }
 
     .dictation-options {
@@ -618,8 +618,8 @@
       border-radius: 999px;
       color: var(--text);
       background: var(--panel);
-      padding: 11px 20px;
-      font-size: clamp(12px, 1.15vw, 15px);
+      padding: 10px 8px;
+      font-size: clamp(11px, 1vw, 13px);
       font-weight: 850;
       cursor: pointer;
     }
@@ -1227,8 +1227,8 @@
       }
 
       .mode-option {
-        padding: 9px 12px;
-        font-size: clamp(12px, 1.1vw, 14px);
+        padding: 9px 6px;
+        font-size: clamp(10px, 1vw, 12px);
       }
     }
 
@@ -1504,7 +1504,7 @@
               <span class="control-label">Start recording</span>
             </span>
           </div>
-          <div class="status" id="status">Tap microphone to start dictation</div>
+          <div class="status" id="status"></div>
         </div>
 
         <div class="mode-panel">
@@ -2395,7 +2395,7 @@
       state.resultMode = "ambient";
       state.resultReady = false;
       timer.textContent = formatTime(state.maxRecordingSeconds);
-      status.textContent = "Tap microphone to start dictation";
+      status.textContent = "";
       focusBox.classList.remove("recording");
       document.getElementById("extendButton").classList.remove("visible", "alert");
       updateModeUi();
