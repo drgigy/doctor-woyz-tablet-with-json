@@ -18,17 +18,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      color-scheme: dark;
-      --bg: #0c0c0d;
-      --panel: #181818;
-      --panel-soft: #111111;
-      --text: #ffffff;
-      --muted: #a0a0a6;
-      --line: #2d2d30;
+      color-scheme: light;
+      --bg: #ffffff;
+      --panel: #ffffff;
+      --panel-soft: #f8fafc;
+      --text: #111827;
+      --muted: #6b7280;
+      --line: #d1d5db;
       --blue: #ef4f4f;
       --blue-dark: #dc2626;
       --indigo: #b91c1c;
-      --shadow: none;
+      --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
     }
 
     .dark {
@@ -185,8 +185,8 @@
       position: sticky;
       top: 0;
       z-index: 10;
-      border-bottom: 1px solid #313131;
-      background: #0c0c0d;
+      border-bottom: 1px solid var(--line);
+      background: #ffffff;
       backdrop-filter: none;
     }
 
@@ -238,10 +238,10 @@
       gap: 18px;
       border: 4px solid var(--blue);
       border-radius: 34px;
-      background: #17181d;
+      background: #ffffff;
       padding: 13px 30px 13px 22px;
       box-shadow: none;
-      color: #f8fafc;
+      color: #111827;
       font-size: 32px;
       line-height: 1;
       font-weight: 900;
@@ -277,7 +277,7 @@
     }
 
     .forward-button {
-      background: #17181d;
+      background: #ffffff;
       box-shadow: 0 10px 24px rgba(15, 23, 42, 0.16);
     }
 
@@ -333,7 +333,7 @@
       overflow: hidden;
       border: 1px solid var(--line);
       border-radius: 20px;
-      background: #101010;
+      background: #ffffff;
       margin-bottom: 12px;
       display: grid;
       place-items: center;
@@ -368,9 +368,9 @@
       display: grid;
       place-items: center;
       padding: 8px 12px;
-      border: 1px solid #303033;
+      border: 1px solid var(--line);
       border-radius: 14px;
-      background: #0e0e0f;
+      background: #ffffff;
       box-shadow: none;
     }
 
@@ -579,10 +579,10 @@
     }
 
     .mode-toggle {
-      border: 4px solid #181818;
+      border: 2px solid var(--line);
       border-radius: 999px;
-      color: #ffffff;
-      background: #17181d;
+      color: #111827;
+      background: #ffffff;
       padding: 11px 24px;
       font-size: 15px;
       font-weight: 850;
@@ -590,8 +590,8 @@
     }
 
     .mode-toggle.active {
-      color: #ffffff;
-      background: #17181d;
+      color: #111827;
+      background: #ffffff;
       border-color: #b91c1c;
       box-shadow: 0 0 0 4px rgba(185, 28, 28, 0.16);
     }
@@ -610,10 +610,10 @@
 
     .mode-option {
       min-width: 138px;
-      border: 3px solid #181818;
+      border: 2px solid var(--line);
       border-radius: 999px;
-      color: #ffffff;
-      background: #181818;
+      color: #111827;
+      background: #ffffff;
       padding: 11px 20px;
       font-size: 15px;
       font-weight: 850;
@@ -621,8 +621,8 @@
     }
 
     .mode-option.active {
-      color: #ffffff;
-      background: #181818;
+      color: #111827;
+      background: #ffffff;
       border-color: var(--blue);
       box-shadow: none;
     }
