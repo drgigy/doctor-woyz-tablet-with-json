@@ -18,17 +18,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      color-scheme: dark;
-      --bg: #0c0c0d;
-      --panel: #181818;
-      --panel-soft: #111111;
-      --text: #ffffff;
-      --muted: #a0a0a6;
-      --line: #2d2d30;
-      --blue: #ef4f4f;
+      color-scheme: light;
+      --bg: #f8fafc;
+      --panel: #ffffff;
+      --panel-soft: #fff1f2;
+      --text: #0f172a;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --blue: #ff4545;
       --blue-dark: #dc2626;
       --indigo: #b91c1c;
-      --shadow: none;
+      --shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
     }
 
     .dark {
@@ -185,16 +185,16 @@
       position: sticky;
       top: 0;
       z-index: 10;
-      border-bottom: 1px solid #313131;
-      background: #0c0c0d;
-      backdrop-filter: none;
+      border-bottom: 1px solid var(--line);
+      background: color-mix(in srgb, var(--panel) 94%, transparent);
+      backdrop-filter: blur(14px);
     }
 
     .topbar-inner {
       max-width: 1100px;
-      min-height: 112px;
+      min-height: 64px;
       margin: 0 auto;
-      padding: 22px 20px;
+      padding: 8px 20px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -204,7 +204,7 @@
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 16px;
+      gap: 10px;
       border: 0;
       background: transparent;
       color: var(--text);
@@ -213,20 +213,20 @@
     }
 
     .brand-doctor {
-      font-size: 32px;
+      font-size: 26px;
       line-height: 1;
       font-weight: 900;
       letter-spacing: 0;
     }
 
     .brand-mark {
-      width: 24px;
-      height: 24px;
+      width: 18px;
+      height: 18px;
       display: grid;
       place-items: center;
       border-radius: 999px;
       background: var(--blue);
-      box-shadow: 0 0 0 12px rgba(255, 69, 69, 0.16);
+      box-shadow: 0 0 0 9px rgba(255, 69, 69, 0.14);
       color: transparent;
       font-size: 0;
       flex: 0 0 auto;
@@ -235,14 +235,14 @@
     .brand-title {
       display: inline-flex;
       align-items: center;
-      gap: 18px;
-      border: 4px solid var(--blue);
-      border-radius: 34px;
+      gap: 14px;
+      border: 3px solid var(--blue);
+      border-radius: 26px;
       background: #17181d;
-      padding: 13px 30px 13px 22px;
-      box-shadow: none;
+      padding: 11px 24px 11px 18px;
+      box-shadow: 0 14px 32px rgba(255, 69, 69, 0.18);
       color: #f8fafc;
-      font-size: 32px;
+      font-size: 28px;
       line-height: 1;
       font-weight: 900;
       letter-spacing: 0;
@@ -286,36 +286,30 @@
       width: 100%;
       display: flex;
       justify-content: center;
-      padding: 12px 42px 16px;
+      padding: 18px 20px 16px;
     }
 
     .center {
-      width: min(100%, 735px);
+      width: min(100%, 760px);
       align-self: flex-start;
       text-align: center;
     }
 
-    #recordView {
-      max-height: calc(100dvh - 112px - 38px);
-      overflow: hidden;
-    }
-
     .intro {
-      margin: 0 auto 10px;
+      margin: 0 auto 16px;
       max-width: 560px;
       color: var(--muted);
-      font-size: 17px;
-      line-height: 1.3;
-      font-weight: 650;
+      font-size: 16px;
+      line-height: 1.65;
     }
 
     .card {
       position: relative;
       background: var(--panel);
       border: 1px solid var(--line);
-      border-radius: 20px;
+      border-radius: 18px;
       box-shadow: var(--shadow);
-      padding: 20px 27px 17px;
+      padding: clamp(22px, 3vw, 28px);
     }
 
     .card:focus {
@@ -323,30 +317,30 @@
     }
 
     .card.strict {
-      background: var(--panel);
-      border-color: var(--line);
+      background: color-mix(in srgb, var(--panel) 82%, #ffe4e6);
+      border-color: #fecdd3;
     }
 
     .focus-box {
       position: relative;
-      min-height: 125px;
+      min-height: 190px;
       overflow: hidden;
       border: 1px solid var(--line);
-      border-radius: 20px;
-      background: #101010;
-      margin-bottom: 12px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 84%, var(--panel)), var(--panel));
+      margin-bottom: 20px;
       display: grid;
       place-items: center;
-      padding: 14px 27px;
+      padding: 20px;
     }
 
     .focus-inner {
       width: 100%;
-      max-width: 100%;
+      max-width: 560px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
     .focus-extend {
@@ -361,58 +355,28 @@
     }
 
     .waveform-wrap {
-      width: 100%;
-      height: 56px;
+      width: min(100%, 520px);
+      height: 120px;
       position: relative;
       overflow: hidden;
-      display: grid;
-      place-items: center;
-      padding: 8px 12px;
-      border: 1px solid #303033;
-      border-radius: 14px;
-      background: #0e0e0f;
-      box-shadow: none;
+      display: block;
+      padding: 8px 10px;
+      border: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+      border-radius: 18px;
+      background: color-mix(in srgb, var(--panel) 78%, var(--panel-soft));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.38);
     }
 
-    .waveform-meter {
-      width: min(420px, 76%);
-      height: 34px;
-      display: grid;
-      grid-template-columns: repeat(28, 1fr);
-      gap: 3px;
-      align-items: end;
-      padding: 1px 0;
-    }
-
-    .waveform-meter span {
-      height: 4px;
-      border-radius: 999px 999px 3px 3px;
-      background: rgba(255, 81, 74, 0.22);
-      opacity: 0.65;
-      transition: height 0.08s linear, background 0.08s linear, opacity 0.08s linear;
-    }
-
-    .waveform-meter span.active {
-      background: #ff514a;
-      opacity: 1;
-    }
-
-    .waveform-meter span:nth-child(3n+1).active {
-      height: 14px;
-    }
-
-    .waveform-meter span:nth-child(3n+2).active {
-      height: 25px;
-    }
-
-    .waveform-meter span:nth-child(3n).active {
-      height: 32px;
+    .waveform-canvas {
+      width: 100%;
+      height: 102px;
+      display: block;
     }
 
     .timer-label {
-      margin-top: 0;
+      margin-top: 2px;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -424,7 +388,7 @@
       align-items: center;
       justify-content: center;
       gap: 12px;
-      min-height: 64px;
+      min-height: 82px;
     }
 
     .control-item {
@@ -470,15 +434,10 @@
     }
 
     .round.record {
-      width: 69px;
-      height: 69px;
+      width: 84px;
+      height: 84px;
       background: var(--blue);
-      box-shadow: 0 0 0 5px rgba(10, 10, 10, 0.74);
-    }
-
-    .round.record svg {
-      width: 27px;
-      height: 27px;
+      box-shadow: 0 16px 30px rgba(255, 69, 69, 0.28);
     }
 
     .round.pause {
@@ -490,13 +449,13 @@
     }
 
     .extend-button {
-      min-height: 34px;
+      min-height: 44px;
       border: 1px solid #fecdd3;
       border-radius: 12px;
       color: var(--blue-dark);
       background: #fff1f2;
-      padding: 8px 11px;
-      font-size: 12px;
+      padding: 10px 13px;
+      font-size: 13px;
       font-weight: 800;
       cursor: pointer;
       box-shadow: 0 10px 22px rgba(255, 69, 69, 0.12);
@@ -527,16 +486,15 @@
     }
 
     .timer {
-      font: 800 35px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font: 700 28px/1.2 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       color: var(--text);
     }
 
     .status {
-      min-height: 20px;
-      margin-top: 6px;
+      min-height: 26px;
+      margin-top: 8px;
       color: var(--muted);
-      font-size: 15px;
-      font-weight: 650;
+      font-size: 14px;
     }
 
     .strict-row {
@@ -575,15 +533,15 @@
       margin: 14px auto 0;
       display: grid;
       justify-items: center;
-      gap: 11px;
+      gap: 8px;
     }
 
     .mode-toggle {
-      border: 4px solid #181818;
+      border: 1px solid #17181d;
       border-radius: 999px;
       color: #ffffff;
       background: #17181d;
-      padding: 11px 24px;
+      padding: 11px 19px;
       font-size: 15px;
       font-weight: 850;
       cursor: pointer;
@@ -598,10 +556,9 @@
 
     .dictation-options {
       display: none;
-      gap: 11px;
+      gap: 9px;
       flex-wrap: wrap;
       justify-content: center;
-      max-width: 675px;
     }
 
     .dictation-options.visible {
@@ -609,22 +566,21 @@
     }
 
     .mode-option {
-      min-width: 138px;
-      border: 3px solid #181818;
+      border: 2px solid #17181d;
       border-radius: 999px;
       color: #ffffff;
-      background: #181818;
-      padding: 11px 20px;
-      font-size: 15px;
+      background: #17181d;
+      padding: 10px 15px;
+      font-size: 14px;
       font-weight: 850;
       cursor: pointer;
     }
 
     .mode-option.active {
       color: #ffffff;
-      background: #181818;
-      border-color: var(--blue);
-      box-shadow: none;
+      background: #17181d;
+      border-color: #b91c1c;
+      box-shadow: 0 0 0 4px rgba(185, 28, 28, 0.16);
     }
 
     .pills {
@@ -652,9 +608,7 @@
       position: absolute;
       left: 0;
       bottom: 48px;
-      width: min(360px, calc(100vw - 32px));
-      max-height: min(760px, calc(100dvh - 84px));
-      overflow-y: auto;
+      width: min(320px, calc(100vw - 32px));
       padding: 16px;
       background: var(--panel);
       border: 1px solid var(--line);
@@ -754,8 +708,7 @@
       border-top: 1px solid var(--line);
     }
 
-    .credentials-field textarea,
-    .print-header-editor {
+    .credentials-field textarea {
       width: 100%;
       min-height: 96px;
       border: 1px solid var(--line);
@@ -768,73 +721,9 @@
       resize: vertical;
     }
 
-    .print-header-editor {
-      overflow: auto;
-      resize: vertical;
-    }
-
-    .print-header-editor:empty::before {
-      content: attr(data-placeholder);
-      color: var(--muted);
-    }
-
-    .print-header-editor .print-header-size-small {
-      font-size: 18px;
-    }
-
-    .print-header-editor .print-header-size-medium {
-      font-size: 24px;
-    }
-
-    .print-header-editor .print-header-size-large {
-      font-size: 30px;
-    }
-
-    .credentials-field textarea:focus,
-    .print-header-editor:focus {
+    .credentials-field textarea:focus {
       border-color: var(--blue);
       box-shadow: 0 0 0 3px rgba(255, 69, 69, 0.16);
-    }
-
-    .template-style-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .template-style-row label {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      color: var(--text);
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .template-style-row select {
-      min-height: 36px;
-      border: 1px solid var(--line);
-      border-radius: 9px;
-      color: var(--text);
-      background: var(--bg);
-      padding: 7px 9px;
-      font: 700 13px/1.2 Inter, system-ui, sans-serif;
-    }
-
-    .template-format-button {
-      min-height: 36px;
-      border: 1px solid var(--line);
-      border-radius: 9px;
-      color: var(--text);
-      background: var(--bg);
-      padding: 7px 10px;
-      font: 800 13px/1.2 Inter, system-ui, sans-serif;
-      cursor: pointer;
-    }
-
-    .template-format-button:active {
-      transform: translateY(1px);
     }
 
     .remove-key {
@@ -1130,96 +1019,88 @@
     }
 
     @media (min-width: 721px) and (max-height: 820px) {
-      #recordView {
-        max-height: calc(100dvh - 86px - 28px);
-      }
-
       .topbar-inner {
-        min-height: 86px;
-        padding: 14px 20px;
+        min-height: 56px;
+        padding: 6px 20px;
       }
 
       .brand-doctor {
-        font-size: 28px;
+        font-size: 24px;
       }
 
       .brand-title {
-        border-width: 4px;
-        border-radius: 30px;
-        padding: 10px 26px 10px 18px;
-        font-size: 28px;
+        border-width: 3px;
+        border-radius: 24px;
+        padding: 9px 22px 9px 16px;
+        font-size: 26px;
       }
 
       .brand-mark {
-        width: 20px;
-        height: 20px;
-        box-shadow: 0 0 0 10px rgba(255, 69, 69, 0.16);
+        width: 16px;
+        height: 16px;
+        box-shadow: 0 0 0 8px rgba(255, 69, 69, 0.14);
       }
 
       main {
-        padding: 10px 42px 12px;
+        padding: 14px 20px 14px;
       }
 
       .intro {
-        margin-bottom: 8px;
-        font-size: 14px;
-        line-height: 1.3;
+        margin-bottom: 12px;
+        font-size: 15px;
+        line-height: 1.45;
       }
 
       .card {
-        padding: 17px 26px 14px;
+        padding: 22px 24px;
       }
 
       .focus-box {
-        min-height: 112px;
-        margin-bottom: 9px;
-        padding: 11px 26px;
+        min-height: 170px;
+        margin-bottom: 16px;
+        padding: 18px;
       }
 
       .focus-inner {
-        gap: 6px;
+        gap: 8px;
       }
 
       .waveform-wrap {
-        height: 48px;
+        height: 108px;
       }
 
-      .waveform-meter {
-        height: 34px;
+      .waveform-canvas {
+        height: 90px;
       }
 
       .timer {
-        font-size: 32px;
+        font-size: 28px;
       }
 
       .controls {
-        min-height: 54px;
+        min-height: 76px;
       }
 
       .round.record {
-        width: 62px;
-        height: 62px;
+        width: 78px;
+        height: 78px;
       }
 
       .status {
-        margin-top: 2px;
-        font-size: 14px;
+        margin-top: 4px;
       }
 
       .mode-panel {
-        margin-top: 9px;
-        gap: 9px;
+        margin-top: 14px;
+        gap: 8px;
       }
 
       .mode-toggle {
-        padding: 9px 20px;
-        font-size: 14px;
+        padding: 9px 16px;
       }
 
       .mode-option {
-        min-width: 128px;
-        padding: 9px 18px;
-        font-size: 14px;
+        padding: 8px 12px;
       }
     }
 
@@ -1395,7 +1276,7 @@
 
     @media (min-width: 721px) and (max-width: 1180px) and (pointer: coarse) {
       .card.recording-controls {
-        padding-bottom: 88px;
+        padding-bottom: 116px;
       }
 
       .card.recording-controls .focus-box {
@@ -1406,8 +1287,8 @@
         position: absolute;
         left: 0;
         right: 0;
-        bottom: 18px;
-        min-height: 54px;
+        bottom: 24px;
+        min-height: 72px;
         pointer-events: none;
       }
 
@@ -1418,16 +1299,16 @@
       }
 
       .card.recording-controls .pause-control {
-        left: 18px;
+        left: 24px;
       }
 
       .card.recording-controls .stop-control {
-        right: 18px;
+        right: 24px;
       }
 
       .card.recording-controls .round {
-        width: 54px;
-        height: 54px;
+        width: 72px;
+        height: 72px;
       }
     }
 
@@ -1472,12 +1353,7 @@
           <div class="focus-box" id="focusBox">
             <div class="focus-inner">
               <div class="waveform-wrap" aria-hidden="true">
-                <div class="waveform-meter" id="waveformMeter">
-                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-                </div>
+                <canvas class="waveform-canvas" id="waveformCanvas"></canvas>
               </div>
               <div class="timer-label">Remaining</div>
               <div class="timer" id="timer">05:00</div>
@@ -1501,11 +1377,11 @@
         <div class="mode-panel">
           <button class="mode-toggle" id="dictationModeToggle" type="button">Mode</button>
           <div class="dictation-options" id="dictationOptions">
-            <button class="mode-option active" data-dictation-mode="reviewDictation" type="button">Review dictation</button>
+            <button class="mode-option active" data-dictation-mode="reviewDictation" type="button">Review Dictation</button>
             <button class="mode-option" data-dictation-mode="prescription" type="button">Prescription</button>
-            <button class="mode-option" data-dictation-mode="visitPrescription" type="button">Visit + prescription</button>
-            <button class="mode-option" data-dictation-mode="replyLetter" type="button">Reply letter</button>
-            <button class="mode-option" data-dictation-mode="medicalCertificate" type="button">Medical certificate</button>
+            <button class="mode-option" data-dictation-mode="visitPrescription" type="button">Visit + Prescription</button>
+            <button class="mode-option" data-dictation-mode="replyLetter" type="button">Reply Letter</button>
+            <button class="mode-option" data-dictation-mode="medicalCertificate" type="button">Medical Certificate</button>
           </div>
         </div>
 
@@ -1702,20 +1578,6 @@
           <p class="key-status" id="apiKeyStatus">Saved only on this device and sent directly to Google Gemini.</p>
         </div>
         <div class="credentials-field">
-          <p class="settings-title">Print Header</p>
-          <div id="printHeaderEditor" class="print-header-editor" contenteditable="true" role="textbox" aria-multiline="true" data-placeholder="Header text for printed notes&#10;Clinic name / doctor details / contact"></div>
-          <div class="template-style-row">
-            <button class="template-format-button" id="printHeaderBoldButton" type="button">Bold</button>
-            <button class="template-format-button" id="printHeaderItalicButton" type="button">Italic</button>
-            <label for="printHeaderSizeInput">Size</label>
-            <select id="printHeaderSizeInput">
-              <option value="small">Small</option>
-              <option value="medium" selected>Medium</option>
-              <option value="large">Large</option>
-            </select>
-          </div>
-        </div>
-        <div class="credentials-field">
           <p class="settings-title">Doctor Credentials</p>
           <textarea id="doctorCredentialsInput" placeholder="Doctor name&#10;Qualifications&#10;Registration number&#10;Clinic / hospital address"></textarea>
         </div>
@@ -1730,7 +1592,6 @@
     import { generateVisitNoteDirect } from "./gemini-client.js";
 
     const API_KEY_STORAGE_KEY = "doctor_woyz_gemini_api_key";
-    const PRINT_HEADER_STORAGE_KEY = "doctor_woyz_print_header";
 
     const state = {
       mediaRecorder: null,
@@ -1753,7 +1614,8 @@
       audioContext: null,
       analyser: null,
       animationId: null,
-      waveformData: null
+      waveformLevel: 0,
+      waveformPhase: 0
     };
 
     const recordView = document.getElementById("recordView");
@@ -1764,7 +1626,7 @@
     const controls = document.getElementById("controls");
     const timer = document.getElementById("timer");
     const status = document.getElementById("status");
-    const waveformMeter = document.getElementById("waveformMeter");
+    const waveformCanvas = document.getElementById("waveformCanvas");
     const waveformWrap = document.querySelector(".waveform-wrap");
     const DEFAULT_RECORDING_SECONDS = 300;
     const EXTEND_SECONDS = 300;
@@ -1853,12 +1715,12 @@
     function getModeLabel() {
       if (state.inputMode === "ambient") return "Ambient Mode";
       return {
-        reviewDictation: "Review dictation",
+        reviewDictation: "Review Dictation",
         visitDictation: "Visit Note",
         prescription: "Prescription",
-        visitPrescription: "Visit + prescription",
-        replyLetter: "Reply letter",
-        medicalCertificate: "Medical certificate"
+        visitPrescription: "Visit + Prescription",
+        replyLetter: "Reply Letter",
+        medicalCertificate: "Medical Certificate"
       }[state.dictationMode] || "Dictation Mode";
     }
 
@@ -1907,23 +1769,41 @@
         await state.audioContext.resume();
       }
       state.analyser = state.audioContext.createAnalyser();
-      state.analyser.fftSize = 256;
-      state.waveformData = new Uint8Array(state.analyser.fftSize);
+      state.analyser.fftSize = 2048;
+      state.waveformLevel = 0;
+      state.waveformPhase = 0;
       const source = state.audioContext.createMediaStreamSource(stream);
       source.connect(state.analyser);
       renderWaveform();
     }
 
-    function setWaveformLevel(level = 0) {
-      const activeBars = Math.min(28, Math.max(0, Math.round(level * 95)));
-      [...waveformMeter.children].forEach((bar, index) => {
-        bar.classList.toggle("active", index < activeBars);
-      });
+    function sizeWaveformCanvas() {
+      const rect = waveformCanvas.getBoundingClientRect();
+      const pixelRatio = window.devicePixelRatio || 1;
+      const width = Math.max(1, Math.floor(rect.width * pixelRatio));
+      const height = Math.max(1, Math.floor(rect.height * pixelRatio));
+      if (waveformCanvas.width !== width || waveformCanvas.height !== height) {
+        waveformCanvas.width = width;
+        waveformCanvas.height = height;
+      }
+      const context = waveformCanvas.getContext("2d");
+      context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+      return { width: rect.width, height: rect.height };
     }
 
     function drawFlatWaveform() {
       waveformWrap.classList.add("active");
-      setWaveformLevel();
+      const context = waveformCanvas.getContext("2d");
+      const { width, height } = sizeWaveformCanvas();
+      const centerY = height / 2;
+      context.clearRect(0, 0, width, height);
+      context.lineWidth = Math.max(2, width / 260);
+      context.lineCap = "round";
+      context.strokeStyle = "rgba(255, 69, 69, 0.42)";
+      context.beginPath();
+      context.moveTo(0, centerY);
+      context.lineTo(width, centerY);
+      context.stroke();
     }
 
     function showIdleWaveformMark() {
@@ -1933,22 +1813,55 @@
     }
 
     function renderWaveform() {
-      if (!waveformMeter) return;
+      if (!waveformCanvas) return;
       waveformWrap.classList.add("active");
+      const context = waveformCanvas.getContext("2d");
+      const { width, height } = sizeWaveformCanvas();
+      const centerY = height / 2;
+      const amplitude = height * 0.5;
+      const pointCount = 100;
+      const pointGap = width / Math.max(1, pointCount - 1);
+      const waveCycles = 9;
+      context.clearRect(0, 0, width, height);
+      context.lineWidth = Math.max(3, width / 180);
+      context.lineCap = "round";
+      context.lineJoin = "round";
+      context.strokeStyle = "#ff4545";
+      context.shadowColor = "rgba(255, 69, 69, 0.32)";
+      context.shadowBlur = 10;
 
-      if (!state.analyser || !state.waveformData || !state.mediaRecorder || state.mediaRecorder.state !== "recording") {
+      if (!state.analyser || !state.mediaRecorder || state.mediaRecorder.state !== "recording") {
+        context.shadowBlur = 0;
         drawFlatWaveform();
         return;
       }
 
-      state.analyser.getByteTimeDomainData(state.waveformData);
+      const data = new Uint8Array(state.analyser.fftSize);
+      state.analyser.getByteTimeDomainData(data);
       let sum = 0;
-      for (let index = 0; index < state.waveformData.length; index += 1) {
-        const sample = (state.waveformData[index] - 128) / 128;
+      for (let index = 0; index < data.length; index += 1) {
+        const sample = (data[index] - 128) / 128;
         sum += sample * sample;
       }
-      const level = Math.sqrt(sum / state.waveformData.length);
-      setWaveformLevel(level);
+      const rms = Math.sqrt(sum / data.length);
+      const targetLevel = Math.max(0.02, Math.min(1, rms * 11));
+      state.waveformLevel = state.waveformLevel * 0.78 + targetLevel * 0.22;
+      state.waveformPhase += 0.07;
+      context.beginPath();
+      for (let index = 0; index < pointCount; index += 1) {
+        const x = index * pointGap;
+        const progress = index / Math.max(1, pointCount - 1);
+        const wave = Math.sin(progress * Math.PI * 2 * waveCycles + state.waveformPhase);
+        const envelope = 0.72 + 0.28 * Math.sin(progress * Math.PI);
+        const y = centerY + wave * amplitude * state.waveformLevel * envelope;
+        if (index === 0) {
+          context.moveTo(x, y);
+        } else {
+          context.lineTo(x, y);
+        }
+      }
+      context.stroke();
+      context.shadowBlur = 0;
       state.animationId = requestAnimationFrame(renderWaveform);
     }
 
@@ -2100,7 +2013,6 @@
         await state.audioContext.close().catch(() => {});
         state.audioContext = null;
         state.analyser = null;
-        state.waveformData = null;
       }
       if (state.stream) {
         state.stream.getAudioTracks().forEach(track => {
@@ -2242,11 +2154,7 @@
     }
 
     function showTextResult(text, mode = "reviewDictation") {
-      const displayText = mode === "visitPrescription"
-        ? normalizeCombinedVisitPrescriptionText(text)
-        : mode === "replyLetter"
-          ? normalizeReplyLetterText(text)
-          : text;
+      const displayText = mode === "visitPrescription" ? normalizeCombinedVisitPrescriptionText(text) : text;
       const labels = {
         reviewDictation: "Review Dictation",
         visitPrescription: "Visit + Prescription",
@@ -2370,7 +2278,6 @@
         state.audioContext.close().catch(() => {});
         state.audioContext = null;
         state.analyser = null;
-        state.waveformData = null;
       }
       if (state.stream) {
         state.stream.getAudioTracks().forEach(track => {
@@ -2554,16 +2461,6 @@
       if (certificateBox && state.resultMode === "medicalCertificate") certificateBox.value = value;
     }
 
-    function getPrintHeaderSettings() {
-      return {
-        html: sanitizePrintHeaderHtml(localStorage.getItem(PRINT_HEADER_STORAGE_KEY) || "")
-      };
-    }
-
-    function setPrintHeaderHtml(value) {
-      localStorage.setItem(PRINT_HEADER_STORAGE_KEY, sanitizePrintHeaderHtml(value));
-    }
-
     function activeVisitFields() {
       return state.resultMode === "visitDictation" ? visitDictationFields : caseFields;
     }
@@ -2589,35 +2486,6 @@
         .map(line => line.trim())
         .filter(Boolean)
         .join("\n\n");
-    }
-
-    function normalizeReplyLetterText(text) {
-      const lines = String(text || "")
-        .replace(/\r\n?/g, "\n")
-        .split("\n")
-        .map(line => line.trim())
-        .filter(line => line && !/^nil$/i.test(line) && !/^reply\s+letter\s*:?$/i.test(line));
-      if (!lines.length) return "";
-      const toIndex = lines.findIndex(line => /^to,?$/i.test(line));
-      const withoutThanks = lines
-        .slice(toIndex >= 0 ? toIndex + 1 : 0)
-        .filter(line => !/^thank you\.?$/i.test(line));
-      const firstParagraphIndex = withoutThanks.findIndex((line, index) => {
-        if (index === 0) return false;
-        return /^(mr|mrs|ms|miss|master|patient|this|he|she|the)\b\.?/i.test(line) || /[.!?]$/.test(line);
-      });
-      const recipientLines = firstParagraphIndex >= 0
-        ? withoutThanks.slice(0, firstParagraphIndex)
-        : withoutThanks.slice(0, Math.min(withoutThanks.length, 4));
-      const paragraphLines = firstParagraphIndex >= 0
-        ? withoutThanks.slice(firstParagraphIndex)
-        : withoutThanks.slice(recipientLines.length);
-      return [
-        "To,",
-        recipientLines.join("\n"),
-        paragraphLines.join("\n\n"),
-        "Thank you"
-      ].filter(Boolean).join("\n\n");
     }
 
     function numberPrescriptionText(text) {
@@ -2714,10 +2582,6 @@
       return escapeHtml(value || "NIL").replace(/\n/g, "<br>");
     }
 
-    function formatOptionalHtmlText(value) {
-      return escapeHtml(value || "").replace(/\n/g, "<br>");
-    }
-
     function formatCredentialsHtml(value) {
       const lines = String(value || "").split("\n");
       if (!lines.some(line => line.trim())) return "";
@@ -2732,160 +2596,7 @@
         .join("<br>");
     }
 
-    function sanitizePrintHeaderHtml(value) {
-      const raw = String(value || "");
-      if (!/<[a-z][\s\S]*>/i.test(raw)) return formatOptionalHtmlText(raw.trim());
-      const template = document.createElement("template");
-      template.innerHTML = raw;
-      const allowedTags = new Set(["DIV", "BR", "B", "I", "STRONG", "EM", "SPAN"]);
-      const allowedClasses = new Set(["print-header-size-small", "print-header-size-medium", "print-header-size-large"]);
-      const cleanNode = node => {
-        if (node.nodeType === Node.TEXT_NODE) return document.createTextNode(node.textContent || "");
-        if (node.nodeType !== Node.ELEMENT_NODE) return document.createTextNode("");
-        const tagName = node.tagName;
-        const replacement = allowedTags.has(tagName)
-          ? document.createElement(tagName.toLowerCase())
-          : document.createDocumentFragment();
-        if (tagName === "SPAN") {
-          const safeClasses = [...node.classList].filter(className => allowedClasses.has(className));
-          if (safeClasses.length) replacement.className = safeClasses.join(" ");
-        }
-        [...node.childNodes].forEach(child => replacement.appendChild(cleanNode(child)));
-        return replacement;
-      };
-      const wrapper = document.createElement("div");
-      [...template.content.childNodes].forEach(child => wrapper.appendChild(cleanNode(child)));
-      return wrapper.innerHTML.trim();
-    }
-
-    function formatPrintHeaderHtml(settings) {
-      return settings.html || "\u00A0";
-    }
-
-    function patientMetaLine() {
-      const date = document.getElementById("prescriptionDate").value.trim();
-      const details = [
-        ["Age", document.getElementById("prescriptionAge").value.trim()],
-        ["Sex", document.getElementById("prescriptionSex").value.trim()],
-        ["UHID", document.getElementById("prescriptionUhid").value.trim()]
-      ]
-        .filter(([, value]) => value && value.toUpperCase() !== "NIL")
-        .map(([label, value]) => `${label}: ${value}`);
-      if (date && date.toUpperCase() !== "NIL") details.push(date);
-      return details.length ? details.join(" | ") : "NIL";
-    }
-
-    function splitPrescriptionForTemplate(text) {
-      const normalized = numberPrescriptionText(text);
-      if (!normalized || normalized.toUpperCase() === "NIL") return { medicines: [], instructions: ["NIL"] };
-      const medicines = [];
-      const instructions = [];
-      let inAdvice = false;
-      normalized.split("\n").map(line => line.trim()).filter(Boolean).forEach(line => {
-        if (/^advice\s*:?$/i.test(line)) {
-          inAdvice = true;
-          return;
-        }
-        const cleanedAdvice = line.replace(/^[-•]\s*/, "").trim();
-        if (inAdvice) {
-          if (cleanedAdvice) instructions.push(cleanedAdvice);
-          return;
-        }
-        const medicineMatch = line.match(/^(\d+)\.\s*(.+)$/);
-        if (medicineMatch) {
-          medicines.push({ number: medicineMatch[1], lines: [medicineMatch[2].trim()] });
-          return;
-        }
-        if (medicines.length) {
-          medicines[medicines.length - 1].lines.push(line);
-        } else {
-          medicines.push({ number: String(medicines.length + 1), lines: [line] });
-        }
-      });
-      return { medicines, instructions };
-    }
-
-    function formatMedicineLine(line, index) {
-      const escaped = formatHtmlText(line);
-      if (index > 0) {
-        const lineClass = /[\u0D00-\u0D7F]/.test(line) ? "medicine-malayalam" : "medicine-instruction";
-        return `<div class="${lineClass}">${escaped}</div>`;
-      }
-      const separator = line.search(/\s[-–—]\s|,\s*(?:take|use|apply|instill|continue)\b/i);
-      if (separator > 0) {
-        const prefix = line.slice(0, separator).trim();
-        const suffix = line.slice(separator).replace(/^\s*[-–—,]\s*/, "").trim();
-        return `<div class="medicine-main"><strong>${formatHtmlText(prefix)}</strong>${suffix ? `<div class="medicine-instruction">${formatHtmlText(suffix)}</div>` : ""}</div>`;
-      }
-      return `<div class="medicine-main"><strong>${escaped}</strong></div>`;
-    }
-
-    function prescriptionPrintHtml() {
-      const nameValue = document.getElementById("prescriptionName").value.trim();
-      const patientName = nameValue && nameValue.toUpperCase() !== "NIL" ? nameValue.toUpperCase() : "NIL";
-      const { medicines, instructions } = splitPrescriptionForTemplate(document.getElementById("prescriptionMedications").value.trim());
-      const medicineHtml = medicines.length
-        ? medicines.map((item, index) => `
-          <div class="rx-item">
-            <div class="rx-number">${escapeHtml(item.number || String(index + 1))}.</div>
-            <div class="rx-copy">${item.lines.map(formatMedicineLine).join("")}</div>
-          </div>
-        `).join("")
-        : '<div class="rx-item"><div class="rx-number">1.</div><div class="rx-copy">NIL</div></div>';
-      const instructionHtml = instructions.length
-        ? instructions.map((line, index) => `
-          <div class="instruction-item">
-            <div class="rx-number">${index + 1}.</div>
-            <div>${formatHtmlText(line)}</div>
-          </div>
-        `).join("")
-        : "";
-      return `
-        <div class="prescription-template">
-          <h1 class="patient-name">${formatHtmlText(patientName)}</h1>
-          <div class="patient-meta">${formatHtmlText(patientMetaLine())}</div>
-          <h2>Rx / ADVICE</h2>
-          <div class="rx-list">${medicineHtml}</div>
-          ${instructionHtml ? `<h2>Instructions</h2><div class="instruction-list">${instructionHtml}</div>` : ""}
-          <div class="template-divider"></div>
-          <p class="template-emergency">If you develop any rash, breathing difficulty, swelling, severe allergy symptoms, or any unexpected reaction, please contact us immediately or get urgent medical attention. Emergency contact: +91 8330 811 911, Rajagiri Hospital, Aluva, Ernakulam.</p>
-        </div>
-      `;
-    }
-
-    function replyLetterPrintHtml(text) {
-      const normalized = normalizeReplyLetterText(text);
-      const usefulLines = normalized
-        .replace(/\r\n?/g, "\n")
-        .split("\n")
-        .map(line => line.trim())
-        .filter(line => line && !/^nil$/i.test(line) && !/^reply\s+letter\s*:?$/i.test(line));
-      if (!usefulLines.length) return '<div class="reply-letter-body"></div>';
-      const withoutThanks = usefulLines.filter(line => !/^thank you\.?$/i.test(line));
-      const thanksLine = usefulLines.some(line => /^thank you\.?$/i.test(line)) ? "Thank you" : "Thank you";
-      const toIndex = withoutThanks.findIndex(line => /^to,?$/i.test(line));
-      const contentLines = withoutThanks.slice(toIndex >= 0 ? toIndex + 1 : 0);
-      const firstParagraphIndex = contentLines.findIndex((line, index) => {
-        if (index === 0) return false;
-        return /^(mr|mrs|ms|miss|master|patient|this|he|she|the)\b\.?/i.test(line) || /[.!?]$/.test(line);
-      });
-      const recipientLines = firstParagraphIndex >= 0
-        ? contentLines.slice(0, firstParagraphIndex)
-        : contentLines.slice(0, Math.min(contentLines.length, 3));
-      const paragraphLines = firstParagraphIndex >= 0
-        ? contentLines.slice(firstParagraphIndex)
-        : contentLines.slice(recipientLines.length);
-      return `
-        <div class="reply-letter">
-          <div class="reply-to">To,</div>
-          ${recipientLines.length ? `<div class="reply-recipient">${recipientLines.map(formatOptionalHtmlText).join("<br>")}</div>` : ""}
-          <div class="reply-letter-body">${formatOptionalHtmlText(paragraphLines.join("\n\n"))}</div>
-          <div class="reply-thanks">${formatOptionalHtmlText(thanksLine)}</div>
-        </div>
-      `;
-    }
-
-    function printDocument({ title, sections, prescription = false, certificate = false, replyLetter = false }) {
+    function printDocument({ title, sections, prescription = false, certificate = false }) {
       const body = certificate
         ? `
           <div class="certificate-page">
@@ -2895,28 +2606,32 @@
               ${formatHtmlText(certificateBodyText())}
             </div>
             <div class="certificate-thanks">Thank you</div>
+            <div class="certificate-credentials">${formatCredentialsHtml(document.getElementById("certificateCredentials").value.trim())}</div>
           </div>
         `
         : prescription
-        ? prescriptionPrintHtml()
-        : replyLetter
-        ? replyLetterPrintHtml(document.getElementById("dictationText").value.trim())
+        ? `
+          <div class="rx-head">
+            <h1>Prescription</h1>
+            <div>${formatHtmlText(document.getElementById("prescriptionDate").value.trim())}</div>
+          </div>
+          <div class="patient-line">
+            <span><strong>Name:</strong> ${formatHtmlText(document.getElementById("prescriptionName").value.trim())}</span>
+            <span><strong>Age:</strong> ${formatHtmlText(document.getElementById("prescriptionAge").value.trim())}</span>
+            <span><strong>Sex:</strong> ${formatHtmlText(document.getElementById("prescriptionSex").value.trim())}</span>
+            <span><strong>UHID:</strong> ${formatHtmlText(document.getElementById("prescriptionUhid").value.trim())}</span>
+          </div>
+          <h2>Medications / Advice</h2>
+          <div class="content">${formatHtmlText(numberPrescriptionText(document.getElementById("prescriptionMedications").value.trim()))}</div>
+          <div class="credentials">${formatCredentialsHtml(document.getElementById("prescriptionCredentials").value.trim())}</div>
+        `
         : sections.map(([heading, value]) => `
           <section>
             <h2>${escapeHtml(heading)}</h2>
             <div class="content">${formatHtmlText(value)}</div>
           </section>
         `).join("");
-      const credentialsHtml = formatCredentialsHtml(getDoctorCredentials());
-      const credentialsBlock = credentialsHtml ? `<div class="print-credentials ${replyLetter ? "reply-credentials" : ""}">${credentialsHtml}</div>` : "";
-      const headerSettings = getPrintHeaderSettings();
-      const printableContent = `${prescription || certificate || replyLetter ? body : `<h1>${escapeHtml(title)}</h1>${body}`}${credentialsBlock}`;
-      const printableBody = `
-        <div class="print-template">
-          <div class="template-header">${formatPrintHeaderHtml(headerSettings)}</div>
-          <div class="template-content">${printableContent}</div>
-        </div>
-      `;
+      const printableBody = prescription || certificate ? body : `<h1>${escapeHtml(title)}</h1>${body}`;
       let printPreview = document.getElementById("printPreview");
       if (!printPreview) {
         printPreview = document.createElement("section");
@@ -2929,49 +2644,27 @@
             #printPreview .print-toolbar { display: flex; gap: 12px; align-items: center; padding: 16px 36px; background: #ffffff; border-bottom: 1px solid #e5e7eb; position: sticky; top: 0; z-index: 10; }
             #printPreview .print-toolbar button { border: 1px solid #ff4545; border-radius: 12px; background: #ffffff; color: #d12626; cursor: pointer; font: 700 15px Arial, sans-serif; padding: 10px 16px; }
             #printPreview .print-toolbar .back-button { background: #ff4545; color: #ffffff; box-shadow: 0 10px 24px rgba(255, 69, 69, .18); }
-            #printPreview .print-page { display: block !important; width: auto !important; max-width: none !important; min-height: 0 !important; background: #ffffff; margin: 0; padding: 0 !important; box-sizing: border-box; }
-            #printPreview .print-template { min-height: 100vh; background: #ffffff; }
-            #printPreview .template-header { min-height: 118px; background: #e8edf3; color: #000000; padding: 28px 44px; box-sizing: border-box; white-space: normal; line-height: 1.22; font-size: 18px; font-weight: 400; }
-            #printPreview .template-header .print-header-size-small { font-size: 18px; }
-            #printPreview .template-header .print-header-size-medium { font-size: 24px; }
-            #printPreview .template-header .print-header-size-large { font-size: 30px; }
-            #printPreview .template-content { padding: 28px 44px 0; box-sizing: border-box; }
-            #printPreview h1 { margin: 0 0 18px; color: #111827; font-size: 26px; }
-            #printPreview h2 { margin: 22px 0 12px; color: #004270; font-size: 16px; font-weight: 900; text-transform: uppercase; letter-spacing: 0; }
+            #printPreview .print-page { display: block !important; width: auto !important; max-width: none !important; min-height: 0 !important; background: #ffffff; margin: 36px; padding: 0 !important; box-sizing: border-box; }
+            #printPreview h1 { margin: 0 0 18px; color: #1f3f8f; font-size: 26px; }
+            #printPreview h2 { margin: 18px 0 6px; color: #334155; font-size: 14px; font-weight: 900; text-transform: uppercase; letter-spacing: .04em; }
             #printPreview section { break-inside: avoid; margin-bottom: 12px; }
             #printPreview .content { white-space: normal; font-size: 15px; }
-            #printPreview .patient-name { margin: 0 0 8px; color: #000000; font-size: 22px; font-weight: 900; text-transform: uppercase; }
-            #printPreview .patient-meta { margin-bottom: 24px; color: #000000; font-size: 13px; }
-            #printPreview .rx-list,
-            #printPreview .instruction-list { display: grid; gap: 14px; }
-            #printPreview .rx-item,
-            #printPreview .instruction-item { display: grid; grid-template-columns: 28px 1fr; column-gap: 18px; color: #000000; font-size: 14px; line-height: 1.45; }
-            #printPreview .rx-number { font-weight: 800; }
-            #printPreview .medicine-main strong { font-size: 15px; }
-            #printPreview .medicine-instruction { margin-top: 2px; }
-            #printPreview .medicine-malayalam { margin-top: 4px; font-size: 12px; }
-            #printPreview .template-divider { margin-top: 28px; border-top: 1px solid #9ca3af; }
-            #printPreview .template-emergency { margin: 14px 0 0; color: #000000; font-size: 11px; line-height: 1.25; }
-            #printPreview .print-credentials { margin-top: 3cm; white-space: normal; text-align: left; font-size: 12px; color: #000000; line-height: 1.25; }
-            #printPreview .print-credentials.reply-credentials { margin-top: 3cm; }
-            #printPreview .reply-letter { white-space: normal; font-size: 15px; line-height: 1.65; text-align: left; }
-            #printPreview .reply-to { margin-bottom: 4px; }
-            #printPreview .reply-recipient { margin-bottom: 18px; }
-            #printPreview .reply-letter-body { margin-top: 0; }
-            #printPreview .reply-thanks { margin-top: 1em; }
+            #printPreview .rx-head { display: flex !important; width: 100%; justify-content: space-between; align-items: flex-start; gap: 24px; border-bottom: 1px solid #d0d5dd; padding-bottom: 12px; margin-bottom: 18px; }
+            #printPreview .rx-head h1 { margin-bottom: 0; }
+            #printPreview .patient-line { display: grid !important; width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 28px; margin-bottom: 24px; }
+            #printPreview .patient-line span { display: block; min-width: 0; }
+            #printPreview .credentials { margin-top: 70px; white-space: normal; text-align: left; font-size: 14px; }
             #printPreview .certificate-page { padding-top: 72px; }
             #printPreview .certificate-date { text-align: right; margin-bottom: 48px; font-size: 15px; }
             #printPreview .certificate-title { text-align: center; color: #111827; text-transform: uppercase; text-decoration: underline; letter-spacing: .04em; margin-bottom: 36px; font-size: 22px; }
             #printPreview .certificate-body { white-space: normal; font-size: 16px; line-height: 1.8; text-align: justify; margin-top: 12px; }
             #printPreview .certificate-thanks { margin-top: 42px; font-size: 15px; }
+            #printPreview .certificate-credentials { margin-top: 44px; white-space: normal; text-align: left; font-size: 14px; }
             @media print {
               body > *:not(#printPreview) { display: none !important; }
               #printPreview { display: block !important; position: static !important; overflow: visible !important; }
               #printPreview .print-toolbar { display: none !important; }
-              #printPreview .print-page { margin: 0 !important; }
-              #printPreview .print-template { min-height: 100vh; }
-              #printPreview .template-header { padding: 10mm 12mm; min-height: 34mm; }
-              #printPreview .template-content { padding: 8mm 12mm 0; }
+              #printPreview .print-page { margin: 24mm 18mm; }
             }
           </style>
           <div class="print-toolbar">
@@ -2995,6 +2688,31 @@
       }
       printPreview.dataset.title = title;
       printPreview.querySelector(".print-page").innerHTML = printableBody;
+      if (window.AndroidPrint && typeof window.AndroidPrint.printHtml === "function") {
+        const printStyles = printPreview.querySelector("style").textContent;
+        const documentHtml = `<!doctype html>
+          <html>
+            <head>
+              <meta charset="utf-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+              <title>${escapeHtml(title)}</title>
+              <style>
+                ${printStyles}
+                html, body { margin: 0; background: #ffffff !important; }
+                #printPreview { display: block !important; position: static !important; overflow: visible !important; }
+                #printPreview .print-toolbar { display: none !important; }
+                #printPreview .print-page { margin: 18mm 16mm !important; }
+              </style>
+            </head>
+            <body>
+              <section id="printPreview">
+                <main class="print-page">${printableBody}</main>
+              </section>
+            </body>
+          </html>`;
+        window.AndroidPrint.printHtml(title || "Doctor WOYZ", documentHtml);
+        return;
+      }
       printPreview.hidden = false;
       document.body.style.overflow = "hidden";
       printPreview.scrollTop = 0;
@@ -3016,10 +2734,6 @@
     }
 
     function printDictation() {
-      if (state.resultMode === "replyLetter") {
-        printDocument({ title: "Reply Letter", replyLetter: true });
-        return;
-      }
       printDocument({
         title: textResultTitle(),
         sections: [[textResultTitle(), document.getElementById("dictationText").value.trim()]]
@@ -3167,85 +2881,8 @@
       }[character]));
     }
 
-    const printHeaderSettings = getPrintHeaderSettings();
-    const printHeaderEditor = document.getElementById("printHeaderEditor");
-    const printHeaderBoldButton = document.getElementById("printHeaderBoldButton");
-    const printHeaderItalicButton = document.getElementById("printHeaderItalicButton");
-    const printHeaderSizeInput = document.getElementById("printHeaderSizeInput");
-    let printHeaderSelection = null;
-
-    function savePrintHeaderSelection() {
-      const selection = window.getSelection();
-      if (!selection || !selection.rangeCount) return;
-      const range = selection.getRangeAt(0);
-      if (printHeaderEditor.contains(range.commonAncestorContainer)) {
-        printHeaderSelection = range.cloneRange();
-      }
-    }
-
-    function restorePrintHeaderSelection() {
-      printHeaderEditor.focus();
-      if (!printHeaderSelection) return;
-      const selection = window.getSelection();
-      selection.removeAllRanges();
-      selection.addRange(printHeaderSelection);
-    }
-
-    function savePrintHeaderEditor() {
-      setPrintHeaderHtml(printHeaderEditor.innerHTML);
-    }
-
-    function applyPrintHeaderCommand(command) {
-      restorePrintHeaderSelection();
-      document.execCommand(command, false, null);
-      savePrintHeaderSelection();
-      savePrintHeaderEditor();
-    }
-
-    function applyPrintHeaderSize(size) {
-      restorePrintHeaderSelection();
-      const selection = window.getSelection();
-      if (!selection || !selection.rangeCount || selection.isCollapsed) return;
-      const range = selection.getRangeAt(0);
-      const span = document.createElement("span");
-      span.className = `print-header-size-${["small", "medium", "large"].includes(size) ? size : "medium"}`;
-      span.appendChild(range.extractContents());
-      range.insertNode(span);
-      range.selectNodeContents(span);
-      selection.removeAllRanges();
-      selection.addRange(range);
-      savePrintHeaderSelection();
-      savePrintHeaderEditor();
-    }
-
-    printHeaderEditor.innerHTML = printHeaderSettings.html;
-    printHeaderEditor.addEventListener("input", savePrintHeaderEditor);
-    printHeaderEditor.addEventListener("keyup", savePrintHeaderSelection);
-    printHeaderEditor.addEventListener("mouseup", savePrintHeaderSelection);
-    printHeaderEditor.addEventListener("paste", event => {
-      event.preventDefault();
-      const text = event.clipboardData?.getData("text/plain") || "";
-      document.execCommand("insertText", false, text);
-      savePrintHeaderEditor();
-    });
-    document.addEventListener("selectionchange", savePrintHeaderSelection);
-    [printHeaderBoldButton, printHeaderItalicButton].forEach(button => {
-      button.addEventListener("mousedown", event => event.preventDefault());
-    });
-    printHeaderBoldButton.addEventListener("click", () => {
-      applyPrintHeaderCommand("bold");
-    });
-    printHeaderItalicButton.addEventListener("click", () => {
-      applyPrintHeaderCommand("italic");
-    });
-    printHeaderSizeInput.addEventListener("mousedown", savePrintHeaderSelection);
-    printHeaderSizeInput.addEventListener("change", event => {
-      applyPrintHeaderSize(event.currentTarget.value);
-    });
-
-    const doctorCredentialsInput = document.getElementById("doctorCredentialsInput");
-    doctorCredentialsInput.value = getDoctorCredentials();
-    doctorCredentialsInput.addEventListener("input", event => {
+    document.getElementById("doctorCredentialsInput").value = getDoctorCredentials();
+    document.getElementById("doctorCredentialsInput").addEventListener("input", event => {
       setDoctorCredentials(event.currentTarget.value);
     });
     document.getElementById("brandButton").addEventListener("click", resetScribe);
