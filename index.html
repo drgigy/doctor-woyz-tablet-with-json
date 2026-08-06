@@ -302,6 +302,7 @@
       overflow: visible;
       display: flex;
       flex-direction: column;
+      padding-bottom: 105px;
     }
 
     .intro {
@@ -589,7 +590,13 @@
     }
 
     .mode-panel {
-      margin: 14px auto 0;
+      position: fixed;
+      left: 50%;
+      bottom: max(38px, calc(env(safe-area-inset-bottom) + 24px));
+      transform: translateX(-50%);
+      z-index: 24;
+      width: min(calc(100vw - 48px), 1100px);
+      margin: 0;
       display: grid;
       justify-items: center;
       gap: 11px;
@@ -598,19 +605,21 @@
     .dictation-options {
       display: flex;
       gap: 11px;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       justify-content: center;
-      max-width: 675px;
+      width: 100%;
+      max-width: none;
     }
 
     .mode-option {
-      min-width: 138px;
+      flex: 1 1 0;
+      min-width: 0;
       border: 2px solid var(--line);
       border-radius: 999px;
       color: var(--text);
       background: var(--panel);
       padding: 11px 20px;
-      font-size: 15px;
+      font-size: clamp(12px, 1.15vw, 15px);
       font-weight: 850;
       cursor: pointer;
     }
@@ -1213,14 +1222,13 @@
       }
 
       .mode-panel {
-        margin-top: 9px;
+        bottom: max(38px, calc(env(safe-area-inset-bottom) + 24px));
         gap: 9px;
       }
 
       .mode-option {
-        min-width: 128px;
-        padding: 9px 18px;
-        font-size: 14px;
+        padding: 9px 12px;
+        font-size: clamp(12px, 1.1vw, 14px);
       }
     }
 
