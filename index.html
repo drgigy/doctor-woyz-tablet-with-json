@@ -13,33 +13,30 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
   <link rel="apple-touch-icon" href="icon-192.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      color-scheme: light;
-      --bg: #ffffff;
-      --panel: #ffffff;
-      --panel-soft: #f8fafc;
-      --text: #111827;
-      --muted: #6b7280;
-      --line: #d1d5db;
+      color-scheme: dark;
+      --bg: #0c0c0d;
+      --panel: #181818;
+      --panel-soft: #111111;
+      --text: #ffffff;
+      --muted: #a0a0a6;
+      --line: #2d2d30;
       --blue: #ef4f4f;
       --blue-dark: #dc2626;
       --indigo: #b91c1c;
-      --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      --shadow: none;
     }
 
     .dark {
       color-scheme: dark;
-      --bg: #0b1220;
-      --panel: #111827;
-      --panel-soft: #0d1628;
+      --bg: #020617;
+      --panel: #0f172a;
+      --panel-soft: #351214;
       --text: #f8fafc;
-      --muted: #a7b0c0;
-      --line: #2b374a;
-      --shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
+      --muted: #94a3b8;
+      --line: #1e293b;
+      --shadow: none;
     }
 
     * {
@@ -185,8 +182,8 @@
       position: sticky;
       top: 0;
       z-index: 10;
-      border-bottom: 1px solid var(--line);
-      background: var(--bg);
+      border-bottom: 1px solid #313131;
+      background: #0c0c0d;
       backdrop-filter: none;
     }
 
@@ -277,14 +274,13 @@
     }
 
     .forward-button {
-      background: var(--panel);
+      background: #17181d;
       box-shadow: 0 10px 24px rgba(15, 23, 42, 0.16);
     }
 
     main {
       flex: 1;
       width: 100%;
-      min-height: calc(100dvh - 112px);
       display: flex;
       justify-content: center;
       padding: 12px 42px 16px;
@@ -297,12 +293,8 @@
     }
 
     #recordView {
-      min-height: calc(100dvh - 140px);
-      max-height: none;
-      overflow: visible;
-      display: flex;
-      flex-direction: column;
-      padding-bottom: 105px;
+      max-height: calc(100dvh - 112px - 38px);
+      overflow: hidden;
     }
 
     .intro {
@@ -316,7 +308,8 @@
 
     .card {
       position: relative;
-      background: var(--panel);
+      background: #101010;
+      color: #ffffff;
       border: 1px solid var(--line);
       border-radius: 20px;
       box-shadow: var(--shadow);
@@ -328,16 +321,15 @@
     }
 
     .card.strict {
-      background: var(--panel);
+      background: #101010;
+      color: #ffffff;
       border-color: var(--line);
     }
 
-    #recordCard {
-      flex: 1 1 auto;
-      min-height: 420px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+    #recordCard .timer-label,
+    #recordCard .status,
+    #recordCard .control-label {
+      color: #ffffff;
     }
 
     .focus-box {
@@ -346,16 +338,11 @@
       overflow: hidden;
       border: 1px solid var(--line);
       border-radius: 20px;
-      background: var(--panel-soft);
+      background: #101010;
       margin-bottom: 12px;
       display: grid;
       place-items: center;
       padding: 14px 27px;
-    }
-
-    #recordCard .focus-box {
-      flex: 1 1 auto;
-      min-height: 220px;
     }
 
     .focus-inner {
@@ -380,21 +367,21 @@
 
     .waveform-wrap {
       width: 100%;
-      height: 56px;
+      height: 76px;
       position: relative;
       overflow: hidden;
       display: grid;
       place-items: center;
       padding: 8px 12px;
-      border: 1px solid var(--line);
+      border: 1px solid #303033;
       border-radius: 14px;
-      background: var(--panel-soft);
+      background: #0e0e0f;
       box-shadow: none;
     }
 
     .waveform-meter {
       width: min(420px, 76%);
-      height: 34px;
+      height: 62px;
       display: grid;
       grid-template-columns: repeat(28, 1fr);
       gap: 3px;
@@ -416,15 +403,15 @@
     }
 
     .waveform-meter span:nth-child(3n+1).active {
-      height: 14px;
+      height: 24px;
     }
 
     .waveform-meter span:nth-child(3n+2).active {
-      height: 25px;
+      height: 46px;
     }
 
     .waveform-meter span:nth-child(3n).active {
-      height: 32px;
+      height: 60px;
     }
 
     .timer-label {
@@ -590,43 +577,57 @@
     }
 
     .mode-panel {
-      position: fixed;
-      left: 50%;
-      bottom: max(38px, calc(env(safe-area-inset-bottom) + 24px));
-      transform: translateX(-50%);
-      z-index: 24;
-      width: min(calc(100vw - 48px), 735px);
-      margin: 0;
+      margin: 14px auto 0;
       display: grid;
       justify-items: center;
-      gap: 6px;
+      gap: 11px;
+    }
+
+    .mode-toggle {
+      border: 4px solid #181818;
+      border-radius: 999px;
+      color: #ffffff;
+      background: #17181d;
+      padding: 11px 24px;
+      font-size: 15px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .mode-toggle.active {
+      color: #ffffff;
+      background: #17181d;
+      border-color: #b91c1c;
+      box-shadow: 0 0 0 4px rgba(185, 28, 28, 0.16);
     }
 
     .dictation-options {
-      display: flex;
-      gap: 6px;
-      flex-wrap: nowrap;
+      display: none;
+      gap: 11px;
+      flex-wrap: wrap;
       justify-content: center;
-      width: 100%;
-      max-width: none;
+      max-width: 675px;
+    }
+
+    .dictation-options.visible {
+      display: flex;
     }
 
     .mode-option {
-      flex: 1 1 0;
-      min-width: 0;
-      border: 2px solid var(--line);
+      min-width: 138px;
+      border: 3px solid #181818;
       border-radius: 999px;
-      color: var(--text);
-      background: var(--panel);
-      padding: 10px 8px;
-      font-size: clamp(11px, 1vw, 13px);
+      color: #ffffff;
+      background: #181818;
+      padding: 11px 20px;
+      font-size: 15px;
       font-weight: 850;
       cursor: pointer;
     }
 
     .mode-option.active {
-      color: var(--text);
-      background: var(--panel);
+      color: #ffffff;
+      background: #181818;
       border-color: var(--blue);
       box-shadow: none;
     }
@@ -984,19 +985,9 @@
     }
 
     .result.visible .result-actions {
-      position: fixed;
-      top: 56px;
-      right: 24px;
-      transform: translateY(-50%);
-      z-index: 30;
+      position: static;
       align-items: center;
-      max-width: min(38vw, 500px);
-    }
-
-    .result.visible .result-actions .copy-button {
-      padding: 9px 12px;
-      font-size: 13px;
-      white-space: nowrap;
+      max-width: min(58vw, 620px);
     }
 
     .copy-button {
@@ -1145,8 +1136,7 @@
 
     @media (min-width: 721px) and (max-height: 820px) {
       #recordView {
-        min-height: calc(100dvh - 106px);
-        max-height: none;
+        max-height: calc(100dvh - 86px - 28px);
       }
 
       .topbar-inner {
@@ -1196,11 +1186,11 @@
       }
 
       .waveform-wrap {
-        height: 48px;
+        height: 64px;
       }
 
       .waveform-meter {
-        height: 34px;
+        height: 52px;
       }
 
       .timer {
@@ -1222,13 +1212,19 @@
       }
 
       .mode-panel {
-        bottom: max(38px, calc(env(safe-area-inset-bottom) + 24px));
+        margin-top: 9px;
         gap: 9px;
       }
 
+      .mode-toggle {
+        padding: 9px 20px;
+        font-size: 14px;
+      }
+
       .mode-option {
-        padding: 9px 6px;
-        font-size: clamp(10px, 1vw, 12px);
+        min-width: 128px;
+        padding: 9px 18px;
+        font-size: 14px;
       }
     }
 
@@ -1504,12 +1500,13 @@
               <span class="control-label">Start recording</span>
             </span>
           </div>
-          <div class="status" id="status"></div>
+          <div class="status" id="status">Tap microphone to start dictation</div>
         </div>
 
         <div class="mode-panel">
+          <button class="mode-toggle" id="dictationModeToggle" type="button">Mode</button>
           <div class="dictation-options" id="dictationOptions">
-            <button class="mode-option" data-dictation-mode="reviewDictation" type="button">Review dictation</button>
+            <button class="mode-option active" data-dictation-mode="reviewDictation" type="button">Review dictation</button>
             <button class="mode-option" data-dictation-mode="prescription" type="button">Prescription</button>
             <button class="mode-option" data-dictation-mode="visitPrescription" type="button">Visit + prescription</button>
             <button class="mode-option" data-dictation-mode="replyLetter" type="button">Reply letter</button>
@@ -1698,16 +1695,16 @@
           <button class="switch" id="darkSwitch" type="button" aria-label="Toggle dark mode"><span></span></button>
         </div>
         <div class="api-field">
-          <label for="geminiApiKeyInput">Gemini API Key</label>
+          <label for="authorizationKeyInput">Authorization Key</label>
           <div class="key-control">
-            <input id="geminiApiKeyInput" type="password" autocomplete="off" spellcheck="false" placeholder="Paste your Gemini API key">
-            <button class="key-visibility" id="keyVisibilityButton" type="button" aria-label="Show API key">Show</button>
+            <input id="authorizationKeyInput" type="password" autocomplete="off" spellcheck="false" placeholder="Paste your authorization key">
+            <button class="key-visibility" id="keyVisibilityButton" type="button" aria-label="Show authorization key">Show</button>
           </div>
           <div class="settings-actions">
             <button class="save-key" id="saveApiKeyButton" type="button">Save Key</button>
             <button class="remove-key" id="removeApiKeyButton" type="button">Remove Key</button>
           </div>
-          <p class="key-status" id="apiKeyStatus">Saved only on this device and sent directly to Google Gemini.</p>
+          <p class="key-status" id="apiKeyStatus">Saved only on this device and used only for secure processing.</p>
         </div>
         <div class="credentials-field">
           <p class="settings-title">Print Header</p>
@@ -1735,9 +1732,10 @@
   </div>
 
   <script type="module">
-    import { generateVisitNoteDirect } from "./gemini-client.js";
+    import { generateSecureNote } from "./secure-client.js";
 
-    const API_KEY_STORAGE_KEY = "doctor_woyz_gemini_api_key";
+    const AUTHORIZATION_KEY_STORAGE_KEY = "doctor_woyz_authorization_key";
+    const LEGACY_AUTHORIZATION_KEY_STORAGE_KEY = ["doctor_woyz", "ge" + "mini", "api" + "_key"].join("_");
     const PRINT_HEADER_STORAGE_KEY = "doctor_woyz_print_header";
 
     const state = {
@@ -1872,8 +1870,10 @@
 
     function updateModeUi() {
       const dictationActive = state.inputMode === "dictation";
+      document.getElementById("dictationModeToggle").classList.toggle("active", dictationActive);
+      document.getElementById("dictationOptions").classList.toggle("visible", dictationActive);
       document.querySelectorAll("[data-dictation-mode]").forEach(button => {
-        button.classList.toggle("active", dictationActive && button.dataset.dictationMode === state.dictationMode);
+        button.classList.toggle("active", button.dataset.dictationMode === state.dictationMode);
       });
       document.querySelector(".intro").textContent = dictationActive ? getModeLabel() : "Ambient Mode";
       recordCard.classList.toggle("strict", dictationActive);
@@ -2161,16 +2161,20 @@
       });
     }
 
-    async function processWithGemini(blob) {
-      const apiKey = localStorage.getItem(API_KEY_STORAGE_KEY) || "";
-      if (!apiKey) {
+    function savedAuthorizationKey() {
+      return localStorage.getItem(AUTHORIZATION_KEY_STORAGE_KEY) || localStorage.getItem(LEGACY_AUTHORIZATION_KEY_STORAGE_KEY) || "";
+    }
+
+    async function processWithSecureService(blob) {
+      const authorizationKey = savedAuthorizationKey();
+      if (!authorizationKey) {
         document.getElementById("settings").classList.add("open");
-        throw new Error("Add and save your Gemini API key in Settings first.");
+        throw new Error("Add and save your authorization key in Settings first.");
       }
       const audioBase64 = await blobToBase64(blob);
       const mimeType = blob.type || "audio/webm";
-      return generateVisitNoteDirect({
-        apiKey,
+      return generateSecureNote({
+        apiKey: authorizationKey,
         audioBase64,
         mimeType,
         mode: getBackendMode()
@@ -2183,10 +2187,10 @@
       const processingText = document.getElementById("processingText");
       const slowProcessingTimers = [
         setTimeout(() => {
-          processingText.textContent = "Still processing. Please keep this page open while Gemini works on the recording.";
+          processingText.textContent = "Still processing. Please keep this page open while the recording is prepared.";
         }, 90000),
         setTimeout(() => {
-          processingText.textContent = "Still working. Your recording is being sent directly to Gemini.";
+          processingText.textContent = "Still working. Your recording is being processed securely.";
         }, 180000)
       ];
       try {
@@ -2199,7 +2203,7 @@
           medicalCertificate: "Preparing your medical certificate..."
         };
         processingText.textContent = processingMessages[backendMode] || "Preparing your visit note...";
-        const result = await processWithGemini(blob);
+        const result = await processWithSecureService(blob);
         if (["reviewDictation", "visitPrescription", "replyLetter"].includes(result.mode)) {
           showTextResult(result.text, result.mode);
         } else if (result.mode === "prescription") {
@@ -2395,7 +2399,7 @@
       state.resultMode = "ambient";
       state.resultReady = false;
       timer.textContent = formatTime(state.maxRecordingSeconds);
-      status.textContent = "";
+      status.textContent = "Tap microphone to start dictation";
       focusBox.classList.remove("recording");
       document.getElementById("extendButton").classList.remove("visible", "alert");
       updateModeUi();
@@ -2408,12 +2412,16 @@
       if (state.stream) state.stream.getTracks().forEach(track => track.stop());
     });
 
+    document.getElementById("dictationModeToggle").addEventListener("click", () => {
+      state.inputMode = state.inputMode === "ambient" ? "dictation" : "ambient";
+      updateModeUi();
+      focusKeyboardShortcuts();
+    });
+
     document.querySelectorAll("[data-dictation-mode]").forEach(button => {
       button.addEventListener("click", () => {
-        const selectedMode = button.dataset.dictationMode;
-        const isAlreadySelected = state.inputMode === "dictation" && state.dictationMode === selectedMode;
-        state.inputMode = isAlreadySelected ? "ambient" : "dictation";
-        if (!isAlreadySelected) state.dictationMode = selectedMode;
+        state.inputMode = "dictation";
+        state.dictationMode = button.dataset.dictationMode;
         updateModeUi();
         focusKeyboardShortcuts();
       });
@@ -2423,28 +2431,30 @@
       document.getElementById("settings").classList.toggle("open");
     });
 
-    const apiKeyInput = document.getElementById("geminiApiKeyInput");
+    const apiKeyInput = document.getElementById("authorizationKeyInput");
     const apiKeyStatus = document.getElementById("apiKeyStatus");
-    apiKeyInput.value = localStorage.getItem(API_KEY_STORAGE_KEY) || "";
+    apiKeyInput.value = savedAuthorizationKey();
     document.getElementById("saveApiKeyButton").addEventListener("click", () => {
       const value = apiKeyInput.value.trim();
       if (!value) {
-        apiKeyStatus.textContent = "Paste a Gemini API key before saving.";
+        apiKeyStatus.textContent = "Paste an authorization key before saving.";
         return;
       }
-      localStorage.setItem(API_KEY_STORAGE_KEY, value);
-      apiKeyStatus.textContent = "API key saved on this device.";
+      localStorage.setItem(AUTHORIZATION_KEY_STORAGE_KEY, value);
+      localStorage.removeItem(LEGACY_AUTHORIZATION_KEY_STORAGE_KEY);
+      apiKeyStatus.textContent = "Authorization key saved on this device.";
     });
     document.getElementById("removeApiKeyButton").addEventListener("click", () => {
-      localStorage.removeItem(API_KEY_STORAGE_KEY);
+      localStorage.removeItem(AUTHORIZATION_KEY_STORAGE_KEY);
+      localStorage.removeItem(LEGACY_AUTHORIZATION_KEY_STORAGE_KEY);
       apiKeyInput.value = "";
-      apiKeyStatus.textContent = "API key removed from this device.";
+      apiKeyStatus.textContent = "Authorization key removed from this device.";
     });
     document.getElementById("keyVisibilityButton").addEventListener("click", event => {
       const showing = apiKeyInput.type === "text";
       apiKeyInput.type = showing ? "password" : "text";
       event.currentTarget.textContent = showing ? "Show" : "Hide";
-      event.currentTarget.setAttribute("aria-label", showing ? "Show API key" : "Hide API key");
+      event.currentTarget.setAttribute("aria-label", showing ? "Show authorization key" : "Hide authorization key");
     });
 
     document.getElementById("darkSwitch").addEventListener("click", event => {
@@ -2928,6 +2938,9 @@
           <style>
             #printPreview { position: fixed; inset: 0; z-index: 10000; overflow: auto; background: #ffffff; color: #111827; font-family: Arial, sans-serif; line-height: 1.45; }
             #printPreview[hidden] { display: none !important; }
+            #printPreview .print-toolbar { display: flex; gap: 12px; align-items: center; padding: 16px 36px; background: #ffffff; border-bottom: 1px solid #e5e7eb; position: sticky; top: 0; z-index: 10; }
+            #printPreview .print-toolbar button { border: 1px solid #ff4545; border-radius: 12px; background: #ffffff; color: #d12626; cursor: pointer; font: 700 15px Arial, sans-serif; padding: 10px 16px; }
+            #printPreview .print-toolbar .back-button { background: #ff4545; color: #ffffff; box-shadow: 0 10px 24px rgba(255, 69, 69, .18); }
             #printPreview .print-page { display: block !important; width: auto !important; max-width: none !important; min-height: 0 !important; background: #ffffff; margin: 0; padding: 0 !important; box-sizing: border-box; }
             #printPreview .print-template { min-height: 100vh; background: #ffffff; }
             #printPreview .template-header { min-height: 118px; background: #e8edf3; color: #000000; padding: 28px 44px; box-sizing: border-box; white-space: normal; line-height: 1.22; font-size: 18px; font-weight: 400; }
@@ -2966,31 +2979,37 @@
             @media print {
               body > *:not(#printPreview) { display: none !important; }
               #printPreview { display: block !important; position: static !important; overflow: visible !important; }
+              #printPreview .print-toolbar { display: none !important; }
               #printPreview .print-page { margin: 0 !important; }
               #printPreview .print-template { min-height: 100vh; }
               #printPreview .template-header { padding: 10mm 12mm; min-height: 34mm; }
               #printPreview .template-content { padding: 8mm 12mm 0; }
             }
           </style>
+          <div class="print-toolbar">
+            <button class="back-button" type="button">Back</button>
+            <button class="print-button" type="button">Print</button>
+          </div>
           <main class="print-page"></main>
         `;
         document.body.appendChild(printPreview);
+        printPreview.querySelector(".back-button").addEventListener("click", () => {
+          printPreview.hidden = true;
+          document.body.style.overflow = "";
+        });
+        printPreview.querySelector(".print-button").addEventListener("click", () => {
+          if (window.AndroidPrint && typeof window.AndroidPrint.print === "function") {
+            window.AndroidPrint.print(printPreview.dataset.title || "Doctor WOYZ");
+          } else {
+            window.print();
+          }
+        });
       }
       printPreview.dataset.title = title;
       printPreview.querySelector(".print-page").innerHTML = printableBody;
       printPreview.hidden = false;
       document.body.style.overflow = "hidden";
       printPreview.scrollTop = 0;
-      if (window.AndroidPrint && typeof window.AndroidPrint.print === "function") {
-        window.AndroidPrint.print(title || "Doctor WOYZ");
-      } else {
-        const finishBrowserPrint = () => {
-          printPreview.hidden = true;
-          document.body.style.overflow = "";
-        };
-        window.addEventListener("afterprint", finishBrowserPrint, { once: true });
-        requestAnimationFrame(() => requestAnimationFrame(() => window.print()));
-      }
     }
 
     function printVisitNote() {

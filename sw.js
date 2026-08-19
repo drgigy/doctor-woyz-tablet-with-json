@@ -1,9 +1,9 @@
-const CACHE_NAME = "doctor-woyz-local-gemini-v26";
+const CACHE_NAME = "doctor-woyz-local-secure-v18";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./main.html",
-  "./gemini-client.js",
+  "./secure-client.js",
   "./manifest.webmanifest",
   "./offline.html",
   "./icon-192.png",
